@@ -49,16 +49,16 @@ class Cluster(Graph):
         if self.autoplot:
             self.draw_decision_graph()
     def draw_decision_graph(self, min_density=None, min_delta=None):
-        fig, ax = _plt.subplots(figsize=(5, 5))
+        fig, ax = _plt.subplots()
         ax.scatter(self.density, self.delta, s=40)
         if min_density is not None and min_delta is not None:
             ax.plot(
-                [min_density, self.density.max()], [min_delta, min_delta], linewidth=2, color="red")
+                [min_density, self.density.max()], [min_delta, min_delta], linestyle='--', linewidth=2, color="red")
             ax.plot(
-                [min_density, min_density], [min_delta, self.delta.max()], linewidth=2, color="red")
-        ax.set_xlabel(r"density", fontsize=20)
-        ax.set_ylabel(r"delta / a.u.", fontsize=20)
-        ax.tick_params(labelsize=15)
+                [min_density, min_density], [min_delta, self.delta.max()], linestyle='--', linewidth=2, color="red")
+        ax.set_xlabel(r"density", fontsize=12)
+        ax.set_ylabel(r"delta / a.u.", fontsize=12)
+        ax.tick_params(labelsize=12)
         return fig, ax
     def assign(self, min_density, min_delta, border_only=False):
         self.min_density = min_density
